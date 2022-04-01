@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button, Menu } from 'antd';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const onClickHome = () =>{
+    console.log('Indo para pagina inicial')
+  }
+  const onClickEquipe = () =>{
+    console.log('Indo para pagina de equipe')
+  }
+  const onClickSobrenos = () =>{
+    console.log('Indo para pagina sobre nós')
+  }
+  const onClickFim = () =>{
+    console.log('Indo para pagina final')
+  }
+  const onClickItem = () =>{
+    console.log('Indo para pagina do item')
+  }
+  return(
+  <div>
+    <h1>Teste</h1>
+    <Menu mode='horizontal'>
+      <Menu.Item key='Home'>Home</Menu.Item>
+      <Menu.Item key='team'>Equipe</Menu.Item>
+      <Menu.Item key='aboutus'>Sobre nós</Menu.Item>
+      <Menu.Item key='contact'>Contato</Menu.Item>
+    </Menu>
+    <main>
+      <h2> Listagem</h2>
+     <Button> Cadastrar Item </Button>
+    </main>
+  </div>
+
+  
+);}
 
 export default App;
