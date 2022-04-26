@@ -1,42 +1,67 @@
-import airmax from "./airmax.json"
-import { Container, InfoArea, PhotoArea, ModelLine, Collection, Description, Price, PriceArea, ActionArea, SizeArea, ColorsArea } from "./styles"
-import Button from "../componentes/Button"
-import {BsFillHandbagFill, BsFillCartFill} from 'react-icons/bs'
-import  ColorDisplay  from "../componentes/ColorsDisplay/index"
 
-const Product = () => (
-    <Container>
-        <PhotoArea>
-            <img src={airmax.photos[0]}/>
-        </PhotoArea>
-        <InfoArea>
-            <ModelLine>{airmax.model.line}</ModelLine>
-            <Collection>{airmax.collection}</Collection>
-            <Description>{airmax.model.description}</Description>
-            <PriceArea>
-                <Price>{airmax.price.discountedPrice}</Price>
-                <Price scratched>{airmax.price.originalPrice}</Price>
-            </PriceArea>
-            <SizeArea>
-                Size
-                {
-                    airmax.model.sizes.map(size => <Button>{size}</Button>)
-                }
-            </SizeArea>
-            <ColorsArea>
-                Color
-                {
-                airmax.model.colors.map(({hex}) =>
-                    <ColorDisplay color={hex}></ColorDisplay>
-                    )
-                }
-            </ColorsArea>
-            <ActionArea>
-                <Button icon={<BsFillHandbagFill/>}> Buy Now</Button>
-                <Button icon={<BsFillCartFill/>}> Add to Cart</Button>
-            </ActionArea>
-        </InfoArea>
-    </Container>
-)
+import { BsFillHandbagFill, BsFillCartFill } from 'react-icons/bs'
+import { Container, InfoArea, PhotoArea, ActionArea } from "./styles"
+import Button from "../componentes/Button"
+import ProductInfos from "./ProductInfos"
+import ProductSettins from "./ProductSettins"
+import { useContext, useState } from 'react'
+import CartContext from '../context/CartContext'
+
+
+const Product = ({ product }) => {
+
+    const {addProductToCart} = useContext(CartContext)
+
+    const [settins, setSettins] = useState({
+        color: product.model.colors[0].id,
+        size: product.model.sizes[0]
+    });
+
+    const changeSize = size => {
+        setSettins({
+            ...settins,
+            size
+        })
+    }
+
+    const changeColor = color => {
+        setSettins({
+            ...settins,
+            color
+        })
+    }
+
+    const handleAddProductToCart = () => {
+        addProductToCart({
+            id: product.id,
+            size: settins.size,
+            color:  settins.color,
+            
+        })
+    }
+   
+
+
+    return (
+    <>
+        <Container>
+            <PhotoArea>
+                <img src={product.photos[0]} alt=''/>
+            </PhotoArea>
+            <InfoArea>
+                <ProductInfos product={product}></ProductInfos>
+                <ProductSettins product={product} setSettins={setSettins} changeSize={changeSize} changeColor={changeColor}
+                selectColor= {settins.color}
+                selectedSize={settins.size}></ProductSettins>
+                <ActionArea>
+                    <Button icon={<BsFillHandbagFill />}> Buy Now</Button>
+                    <Button icon={<BsFillCartFill />} onClick= {()=> handleAddProductToCart()}> Add to Cart</Button>
+                </ActionArea>
+            </InfoArea>
+        </Container>
+       
+    </>
+    )
+}
 
 export default Product

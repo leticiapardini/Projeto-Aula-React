@@ -1,13 +1,24 @@
 import { Menu as AntdMenu } from "antd"
+import { Link } from "react-router-dom"
+import routes from "../../defaults/Routes"
 
 const Menu = () => (
 
-    <AntdMenu  mode='horizontal'>
-        <AntdMenu.Item key='Home'>Home</AntdMenu .Item>
-        <AntdMenu.Item key='team'>Equipe</AntdMenu .Item>
-        <AntdMenu.Item key='aboutus'>Sobre nós</AntdMenu .Item>
-        <AntdMenu.Item key='contact'>Contato</AntdMenu .Item>
+    <AntdMenu mode='horizontal'>
+        {
+            routes.map(
+                (route) => (
+                    <AntdMenu.Item key={route.key}>
+                    <Link to={route.path}>
+                        {route.label}
+                    </Link>
+                </AntdMenu.Item>
+               
+            )
+                )
+            }
     </AntdMenu >
+
 )
 
 export default Menu

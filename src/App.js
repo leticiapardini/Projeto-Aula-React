@@ -1,24 +1,27 @@
-import { Button } from 'antd';
-import Menu from './componentes/Menu';
-import Main from './componentes/Main';
-import CheckableButton from './componentes/CheckableButton';
-import Contador from './componentes/Contador';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Menu from './componentes/Menu'
+import routes from './defaults/Routes'
+
 
 const App = () => {
- 
-  return(
-  <div>
-    {/* <Button>Teste</Button> */}
-    <CheckableButton> TESTE</CheckableButton>
-    <Contador></Contador>
-    
-    <Menu/>
-    <Main/>
-  </div>
+    return (
+        <BrowserRouter>
+           <Menu/>
+           <Routes>
+           {
+               routes.map(
+                   (route) => 
+               
+                   <Route path={route.path} element={route.element} key={route.key}/>
+                   )
+            }
+            </Routes>
+        
+           
+            
+        </BrowserRouter>
+    )
+}
 
-  
-)};
-
-export default App;
-
+export default App
 

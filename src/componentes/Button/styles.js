@@ -18,4 +18,11 @@ export const StyledButton = styled.button`
     & svg {
         margin-right: 5px;
     }
+
+    ${({select})=> select && `
+    border-radius: 5px;
+    background-color: rgba(255,255,255,.21);
+    font-weight: 800;
+  
+  `}
 `

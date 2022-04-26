@@ -2,10 +2,10 @@ import  propTypes from "prop-types";
 import { StyledButton } from "./styles";
 
 
-const Button = ({children, icon, onClick}) => (
+const Button = ({children, icon, onClick, select}) => (
 
     <>
-        <StyledButton onClick={onClick}>
+        <StyledButton onClick={onClick} select={select}>
            {icon}
             {children}
         </StyledButton>
@@ -13,6 +13,9 @@ const Button = ({children, icon, onClick}) => (
 
 )
 
+Button.default = {
+    select: false
+}
 
 Button.propTypes = {
     onClick: propTypes.func,

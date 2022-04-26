@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import Button from "../componentes/Button";
+import { PRIMARY_COLOR } from "../defaults/colors";
+
+export const SelectButton = styled(Button)`
+   
+`
 
 export const Container = styled.article`
     background-color : #2a2f40;
@@ -6,6 +12,7 @@ export const Container = styled.article`
     
     display: flex;
     flex-direction: row;
+    margin: 20px;
 
     @media (max-width: 768px) {
         flex-direction: column;
@@ -14,7 +21,7 @@ export const Container = styled.article`
 
 export const PhotoArea = styled.div`
     
-    background-color: #ff6d39;
+    background-color: ${PRIMARY_COLOR};
     border-radius: 0 50% 50% 0;
     height: 300px;
     width: 300px;
@@ -31,8 +38,8 @@ export const PhotoArea = styled.div`
     @media (max-width: 768px) {
         & img {
             position: relative;
-            top: -28vw;
-            left: -28vw;
+            top: -20vw;
+            left: -25vw;
             width: 100%
             pointer-events: none;
         }
@@ -44,40 +51,7 @@ export const InfoArea = styled.div`
     padding: 15px;
 `
 
-export const ModelLine = styled.h3`
-    color: #ff6d39;
-    margin-bottom: 50px;`
 
-export const Collection = styled.p`
-    font-size: 18px;
-    font-weigt: 300;
-    margin:0;
-`
-export const Description = styled.p`
-
-    font-size: 24px;
-    margin: 0 0 5px 0;
-
-`
-
-
-export const Price = styled.p`
-
-    ${({scratched}) => scratched && `
-        text-decoration: line-through;
-        text-decoration-color: red;
-    `}
-    &::before {
-    content: '$';
-}
-
-    &:first-of-type {
-        margin-right: 20px;
-    }
-`
-
-export const PriceArea = styled.div`
-    display:flex;`
 
 export const ActionArea = styled.div`
     display:flex;
@@ -97,8 +71,12 @@ export const SizeArea = styled.div`
     }
 
     & Button {
-        margin: 0 10px;
+        margin: 0 5px;
+        width: 20px;
+        height: 20px;
     }
+
+
 `
 
 export const ColorsArea = styled.div`
@@ -107,11 +85,11 @@ export const ColorsArea = styled.div`
     margin-bottom: 10px;
     align-items: center;
 
-    & > div {
+    & > button {
     margin: 0 10px;
     }
 
-    & > div:first-of-type {
+    & > button:first-of-type {
     margin-left: 30px;
     }
 `
